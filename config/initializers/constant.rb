@@ -1,0 +1,1 @@
+BEST_PAGE_COUNT = 7

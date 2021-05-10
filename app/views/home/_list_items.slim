@@ -1,0 +1,8 @@
+- items.each do |href, data|
+  .col-sm-6.mb-3.col-xs-12
+    .div.main-content
+      .image-wrapper.mb-2
+        = image_tag data[:images]&.first || 'placeholder-image.png', class: "w-100"
+      .content
+        h5= link_to data[:title], 'javascript:void(0)', class: 'link-item', data: {href: href, title: data[:title]}
+        p.text-small.text-muted = truncate_html(data[:short_description].encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: ''), length: 200, omission: '...', word_boundary: false)

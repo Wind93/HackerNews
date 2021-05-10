@@ -3,13 +3,14 @@ module ApplicationHelper
   require 'nokogiri'
   require 'open-uri'
   require 'uri'
+  require 'open_uri_redirections'
   def read_from_cache link, in_worker=false, timeout=1
     item = {}
     Rails.cache.fetch("#{link}") do
       # craw image save into array
       images = []
       begin
-        doc = Nokogiri::HTML(URI.open(link, :read_timeout => timeout))
+        doc = Nokogiri::HTML(URI.open(link, read_timeout: timeout, allow_redirections: :all))
         doc.xpath("//img/@src").each do |src|
           value = if src.value.include?("http")
             src.value
@@ -29,6 +30,8 @@ module ApplicationHelper
       rescue Net::ReadTimeout => e
         TimeoutWorker.perform_async(link) unless in_worker
         {}
+      rescue
+        nil
       end
     end
   end

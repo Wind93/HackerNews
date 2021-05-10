@@ -1,6 +1,7 @@
 window.Home = {
   init() {
-    this.redirectToDetailItem()
+    this.redirectToDetailItem();
+    this.handleLoadMore();
   },
 
   redirectToDetailItem() {
@@ -23,5 +24,12 @@ window.Home = {
       const title = $(event.target).data('title');
       load(href, title);
     });
+  },
+
+  handleLoadMore() {
+    $(".btn-load-more").on("click", function(data) {
+      $('.link-to-load').toggleClass('d-none')
+      $('.spinner-border').toggleClass('d-none')
+    })
   }
 }

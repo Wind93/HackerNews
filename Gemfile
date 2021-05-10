@@ -28,6 +28,7 @@ gem 'slim'
 gem 'fastimage', '~> 1.8', '>= 1.8.1'
 gem 'truncate_html'
 gem 'sidekiq', '~> 6.2', '>= 6.2.1'
+gem 'open_uri_redirections', '~> 0.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

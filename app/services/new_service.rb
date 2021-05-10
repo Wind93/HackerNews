@@ -2,9 +2,10 @@ class NewService
   class << self
     require 'nokogiri'
     require 'open-uri'
+    require 'open_uri_redirections'
     include ApplicationHelper
-    def lasted_best_news
-      doc = Nokogiri::HTML(URI.open('https://news.ycombinator.com/best'))
+    def lasted_best_news(target_link)
+      doc = Nokogiri::HTML(URI.open(target_link, allow_redirections: :all))
       convert_content_to_items doc
     end
 

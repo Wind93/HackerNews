@@ -1,0 +1,9 @@
+$(".list-best-news").append("<%=j render 'list_items', items: @items %>")
+$('.link-to-load').toggleClass('d-none')
+$('.spinner-border').toggleClass('d-none')
+<% if @current_page == BEST_PAGE_COUNT %>
+  $('.load-more-row').hide();
+<% else %>
+  $(".load-more-row").show();
+  $(".load-more-row a").attr("href", "<%= root_path({page: @current_page.to_i + 1}) %>")
+<% end %>

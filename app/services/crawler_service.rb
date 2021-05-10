@@ -38,7 +38,8 @@ class CrawlerService
 
   def page_analyze(link)
     item = read_from_cache(link)
-    @results.merge! item
+    @results.merge! item if item
+    @results
   end
 
   def push_link(doc)

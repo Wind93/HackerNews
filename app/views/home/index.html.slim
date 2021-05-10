@@ -1,13 +1,10 @@
-.row.my-2
-  - @items.each do |href, data|
-      .col-sm-6.mb-3.col-xs-12
-        .div.main-content
-          .image-wrapper.mb-2
-            = image_tag data[:images]&.first || 'placeholder-image.png', class: "w-100"
-          .content
-            h5= link_to data[:title], 'javascript:void(0)', class: 'link-item', data: {href: href, title: data[:title]}
-            p.text-small.text-muted = truncate_html(data[:short_description].force_encoding('UTF-8'), length: 200, omission: '...', word_boundary: false)
-
+.row.my-2.list-best-news
+  = render "list_items", items: @items
+.row.justify-content-center.mb-4.load-more-row
+  = link_to root_path({page: @current_page + 1}), remote: true, class: "link-to-load" do
+    button.btn.btn-primary.btn-load-more type="button" View More
+  .spinner-border.text-primary.d-none role="status"
+    span.sr-only Loading...
 
 - content_for :script do
   javascript:
