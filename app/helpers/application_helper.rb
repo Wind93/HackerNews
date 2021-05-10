@@ -1,26 +1,35 @@
 module ApplicationHelper
-  def read_from_cache link
+  require 'readability'
+  require 'nokogiri'
+  require 'open-uri'
+  require 'uri'
+  def read_from_cache link, in_worker=false, timeout=1
     item = {}
     Rails.cache.fetch("#{link}") do
       # craw image save into array
       images = []
-      doc = Nokogiri::HTML(URI.open(link))
-      doc.xpath("//img/@src").each do |src|
-        value = if src.value.include?("http")
-          src.value
-        else
-          URI.join(link, src.value).to_s
-        end
+      begin
+        doc = Nokogiri::HTML(URI.open(link, :read_timeout => timeout))
+        doc.xpath("//img/@src").each do |src|
+          value = if src.value.include?("http")
+            src.value
+          else
+            URI.join(link, src.value).to_s
+          end
 
-        images << value
+          images << value
+        end
+        # craw content
+        source = open(link).read
+        new_readability = Readability::Document.new(source, :tags => %w[body], :remove_empty_nodes => false)
+        item[link] = {content: handle_content(new_readability)}
+        item[link].merge! short_description: handle_short_description(new_readability)
+        item[link].merge! images: images
+        item
+      rescue Net::ReadTimeout => e
+        TimeoutWorker.perform_async(link) unless in_worker
+        {}
       end
-      # craw content
-      source = open(link).read
-      new_readability = Readability::Document.new(source, :tags => %w[body], :remove_empty_nodes => false)
-      item[link] = {content: handle_content(new_readability)}
-      item[link].merge! short_description: handle_short_description(new_readability)
-      item[link].merge! images: images
-      item
     end
   end
 

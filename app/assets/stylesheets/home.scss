@@ -11,7 +11,9 @@
   }
 
   .content {
-    
+    p {
+      word-break: break-word;
+    }
   }
 }
 .content-article {

@@ -1,10 +1,7 @@
 class NewService
-  require 'rubygems'
-  require 'readability'
-  require 'nokogiri'
-  require 'open-uri'
-  require 'uri'
   class << self
+    require 'nokogiri'
+    require 'open-uri'
     include ApplicationHelper
     def lasted_best_news
       doc = Nokogiri::HTML(URI.open('https://news.ycombinator.com/best'))
@@ -26,9 +23,11 @@ class NewService
       end
       crawler = CrawlerService.new(items.keys)
       results = crawler.run
+
       results.each do |k, v|
         results[k].merge! title: items[k]
       end
+      results = items.map{|k, v| [k, {title: v, short_description: '', images: []}]}.to_h if results.blank?
       results
     end
   end

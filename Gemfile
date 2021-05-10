@@ -27,6 +27,7 @@ gem 'ruby-readability', '~> 0.7.0'
 gem 'slim'
 gem 'fastimage', '~> 1.8', '>= 1.8.1'
 gem 'truncate_html'
+gem 'sidekiq', '~> 6.2', '>= 6.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
