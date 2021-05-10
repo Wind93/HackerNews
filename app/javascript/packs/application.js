@@ -8,7 +8,9 @@ import Turbolinks from "turbolinks"
 import "channels"
 
 require("bootstrap")
-import "../stylesheets/application";
+import "./home";
+window.jQuery = $;
+window.$ = $;
 
 Rails.start()
 Turbolinks.start()

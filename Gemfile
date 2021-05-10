@@ -25,10 +25,13 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'nokogiri', '~> 1.11', '>= 1.11.3'
 gem 'ruby-readability', '~> 0.7.0'
 gem 'slim'
+gem 'fastimage', '~> 1.8', '>= 1.8.1'
+gem 'truncate_html'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 5.0', '>= 5.0.1'
 end
 
 group :development do

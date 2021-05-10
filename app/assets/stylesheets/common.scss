@@ -1,0 +1,25 @@
+html {
+  font-weight: 400;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+header {
+  min-height: 60px;
+  position: fixed;
+  width: 100%;
+  background: white;
+  z-index: 1;
+}
+
+footer {
+  min-height: 80px;
+  padding-top: 20px;
+  border-top: 1px solid gainsboro;
+}
+
+.content-container {
+  padding-top: 60px;
+}

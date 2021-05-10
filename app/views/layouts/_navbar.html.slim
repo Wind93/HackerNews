@@ -1,3 +1,20 @@
 header
   .container
-    h1.text-center Header
+    nav.navbar.navbar-expand-lg.navbar-light
+      a.navbar-brand href="/"  Logo
+      button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button" 
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link href="/" 
+              | Home
+        = link_to 'Login', 'javascript:void(0)', class: "my-2 my-lg-0 login-link"
+
+
+- content_for :script do
+  javascript:
+    $("body").on('click', '.login-link', function(e){
+      e.preventDefault();
+      alert("The feature is comming soon.");
+    })

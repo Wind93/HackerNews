@@ -1,0 +1,4 @@
+h1.text-center.mb-5
+  = params[:title]
+.content-article
+  = handle_load_image(@item[:content].undump, params[:href]).html_safe

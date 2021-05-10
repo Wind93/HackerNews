@@ -1,0 +1,22 @@
+.main-content {
+  .image-wrapper {
+    width: 50%;
+    margin: 0 auto;
+    height: 100px;
+    img {
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
+  .content {
+    
+  }
+}
+.content-article {
+  img {
+    max-width: fit-content;
+    width: 100%;
+  }
+}

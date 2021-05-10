@@ -13,6 +13,8 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render 'layouts/navbar'
-    .container
+    .container.content-container
       = yield
     = render 'layouts/footer'
+
+  = yield :script
