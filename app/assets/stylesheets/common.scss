@@ -23,5 +23,6 @@ footer {
 
 .content-container {
   padding-top: 60px;
-  word-break: break-word
+  word-break: break-word;
+  min-height: calc(100vh - 160px);
 }
